@@ -11,7 +11,6 @@ import FirebaseAuth
 class LoginViewController: UIViewController {
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
-    @IBOutlet var loginButton: UIButton!
     @IBOutlet var errorLabel: UILabel!
     
     override func viewDidLoad() {
@@ -30,38 +29,23 @@ class LoginViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let identifier = segue.identifier{
-            if identifier == "home1Segue"{
-                if let homeVC = segue.destination as? HomePageViewController{
-                    let email = emailTextField.text
-                    homeVC.emailOptional = email
+
+    @IBAction func loginPressed(_ sender: UIButton) {
+        let empty = validateTextFields()
+        if empty != nil{
+            displayError(empty!)
+            errorLabel.alpha = 1
+        }else{
+            Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
+                if error == nil{
+                    self.performSegue(withIdentifier: "loginToHome", sender: self)
+                }else{
+                    self.displayError("Wrong username or password")
                 }
             }
         }
     }
     
-//    @IBAction func loginButtonPressed(_ sender: UIButton) {
-//        let error = validateTextFields()
-//
-//        if error != nil{
-//            displayError(error!)
-//        }else{
-//            let email = emailTextField.text!
-//            let password = passwordTextField.text!
-//
-//            Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-//                if error != nil{
-//                    self.errorLabel.text = error!.localizedDescription
-//                    self.errorLabel.alpha = 1
-//                }else{
-//                        self.transitionHome()
-//                }
-//            }
-//
-//        }
-//
-//    }
     
     func validateTextFields() -> String?{
         if emailTextField.text == "" || passwordTextField.text == ""{
@@ -73,12 +57,5 @@ class LoginViewController: UIViewController {
     func displayError(_ error: String){
         errorLabel.text = error
         errorLabel.alpha = 1
-    }
-    
-    func transitionHome(){
-        let homeVC = storyboard?.instantiateViewController(identifier: "homeVC") as? HomePageViewController
-        
-        view.window?.rootViewController = homeVC
-        view.window?.makeKeyAndVisible()
     }
 }
