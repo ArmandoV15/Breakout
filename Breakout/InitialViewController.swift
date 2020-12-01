@@ -20,10 +20,10 @@ class InitialViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool){
-     super.viewDidAppear(animated)
-     if Auth.auth().currentUser != nil {
-       self.performSegue(withIdentifier: "toHome", sender: self)
-    }
+        super.viewDidAppear(animated)
+        if Auth.auth().currentUser != nil {
+            self.performSegue(withIdentifier: "toHome", sender: self)
+        }
     }
     
 
