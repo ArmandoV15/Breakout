@@ -57,7 +57,7 @@ class SignUpViewController: UIViewController {
                             self.displayError("Something went wrong!")
                         }
                     }
-                        self.transitionHome()
+                    self.performSegue(withIdentifier: "signUpToHome", sender: self)
                 }
             }
         }
@@ -75,12 +75,4 @@ class SignUpViewController: UIViewController {
         errorLabel.text = error
         errorLabel.alpha = 1
     }
-    
-    func transitionHome(){
-        let homeVC = storyboard?.instantiateViewController(identifier: "homeVC") as? HomePageViewController
-        
-        view.window?.rootViewController = homeVC
-        view.window?.makeKeyAndVisible()
-    }
-    
 }

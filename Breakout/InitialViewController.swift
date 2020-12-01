@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class InitialViewController: UIViewController {
 
@@ -18,6 +19,13 @@ class InitialViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool){
+     super.viewDidAppear(animated)
+     if Auth.auth().currentUser != nil {
+       self.performSegue(withIdentifier: "toHome", sender: self)
+    }
+    }
+    
 
     /*
     // MARK: - Navigation
@@ -28,5 +36,6 @@ class InitialViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBAction func unwind(_ seg: UIStoryboardSegue){
+    }
 }
