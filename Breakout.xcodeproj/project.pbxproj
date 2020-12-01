@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,7 @@
 		599AD23725748D8F00826EE6 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599AD23325748D8F00826EE6 /* InitialViewController.swift */; };
 		599AD23825748D8F00826EE6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599AD23425748D8F00826EE6 /* LoginViewController.swift */; };
 		599AD23925748D8F00826EE6 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599AD23525748D8F00826EE6 /* HomePageViewController.swift */; };
+		59E08EC52575FFF30007A716 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59E08EC42575FFF30007A716 /* LaunchScreen.storyboard */; };
 		CECDE0CB2C143C9952021F45 /* Pods_Breakout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47FDF83325F75AA662FDF9B6 /* Pods_Breakout.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		599AD23325748D8F00826EE6 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		599AD23425748D8F00826EE6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		599AD23525748D8F00826EE6 /* HomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
+		59E08EC42575FFF30007A716 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65ACEB902CDD1223889B6254 /* Pods-Breakout.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Breakout.release.xcconfig"; path = "Target Support Files/Pods-Breakout/Pods-Breakout.release.xcconfig"; sourceTree = "<group>"; };
 		82E84804022755C739727CE9 /* Pods-Breakout.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Breakout.debug.xcconfig"; path = "Target Support Files/Pods-Breakout/Pods-Breakout.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,7 +60,6 @@
 				82E84804022755C739727CE9 /* Pods-Breakout.debug.xcconfig */,
 				65ACEB902CDD1223889B6254 /* Pods-Breakout.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -88,6 +89,7 @@
 				599AD22025748D5D00826EE6 /* Actions.sks */,
 				599AD22225748D5D00826EE6 /* GameScene.swift */,
 				599AD22425748D5D00826EE6 /* GameViewController.swift */,
+				59E08EC42575FFF30007A716 /* LaunchScreen.storyboard */,
 				599AD22625748D5D00826EE6 /* Main.storyboard */,
 				599AD23525748D8F00826EE6 /* HomePageViewController.swift */,
 				599AD23325748D8F00826EE6 /* InitialViewController.swift */,
@@ -169,6 +171,7 @@
 				599AD22825748D5D00826EE6 /* Main.storyboard in Resources */,
 				599AD21F25748D5D00826EE6 /* GameScene.sks in Resources */,
 				599AD22A25748D5F00826EE6 /* Assets.xcassets in Resources */,
+				59E08EC52575FFF30007A716 /* LaunchScreen.storyboard in Resources */,
 				599AD22125748D5D00826EE6 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
