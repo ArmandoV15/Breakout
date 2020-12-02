@@ -107,7 +107,7 @@ class GameScene: SKScene {
 
         let paddle = childNode(withName: "paddle") as! SKSpriteNode
             // 4
-        var paddleX = paddle.position.x + (touchLocation.x - previousLocation.x)
+        let paddleX = paddle.position.x + (touchLocation.x - previousLocation.x)
             // 5
         //paddleX = max(paddleX, size.width/2)
         //paddleX = min(paddleX, size.width)
