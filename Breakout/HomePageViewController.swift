@@ -13,6 +13,7 @@ class HomePageViewController: UIViewController {
     @IBOutlet var welcomeLabel: UILabel!
     @IBOutlet var playGameButton: UIButton!
     @IBOutlet var statsButton: UIButton!
+    @IBOutlet var logOutButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -22,6 +23,7 @@ class HomePageViewController: UIViewController {
         // Do any additional setup after loading the view.
         Styling.styleFillButton(playGameButton)
         Styling.styleFillButton(statsButton)
+        Styling.styleFillButton(logOutButton)
     }
     
 
@@ -34,6 +36,17 @@ class HomePageViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier{
+            if identifier == "statsSegue"{
+                if let statsVC = segue.destination as? PlayerStatsViewController{
+                    let email = emailOptional
+                    statsVC.emailOptional = email
+                }
+            }
+        }
+    }
     
     @IBAction func playerStatsPushed(_ sender: UIButton) {
         self.performSegue(withIdentifier: "statsSegue", sender: self)

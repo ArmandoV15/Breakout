@@ -294,7 +294,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Vde-Gx-lBU">
-                                <rect key="frame" x="18" y="348" width="378" height="112"/>
+                                <rect key="frame" x="18" y="348" width="378" height="174"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w6P-qo-J0j">
                                         <rect key="frame" x="0.0" y="0.0" width="378" height="50"/>
@@ -318,6 +318,17 @@
                                             <action selector="playerStatsPushed:" destination="UHY-VU-TBK" eventType="touchUpInside" id="LrY-a4-O6R"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w5O-gC-wPH">
+                                        <rect key="frame" x="0.0" y="124" width="378" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="JjM-1N-bPo"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Log Out"/>
+                                        <connections>
+                                            <segue destination="Fde-Wx-0fB" kind="unwind" unwindAction="unwind:" id="zVI-xY-cy0"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -335,6 +346,7 @@
                     <navigationItem key="navigationItem" id="uwR-YO-biC"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="logOutButton" destination="w5O-gC-wPH" id="8d7-8Z-Pgo"/>
                         <outlet property="playGameButton" destination="w6P-qo-J0j" id="ykC-gt-RlR"/>
                         <outlet property="statsButton" destination="kU1-n7-wfm" id="hCU-U9-25P"/>
                         <outlet property="welcomeLabel" destination="rel-on-DA7" id="MwZ-lu-8uy"/>
@@ -342,6 +354,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f7i-Bh-Ou3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Fde-Wx-0fB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1790" y="51"/>
         </scene>
