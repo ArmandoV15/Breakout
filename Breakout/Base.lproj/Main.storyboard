@@ -22,7 +22,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2790" y="51"/>
+            <point key="canvasLocation" x="2749" y="-326"/>
         </scene>
         <!--Initial View Controller-->
         <scene sceneID="aKZ-hI-nER">
@@ -81,7 +81,6 @@
                     <connections>
                         <outlet property="loginButton" destination="2W7-1k-ehp" id="UOH-Ff-Q7m"/>
                         <outlet property="signUpButton" destination="XHI-0X-zRq" id="3cP-7o-MMK"/>
-                        <segue destination="UHY-VU-TBK" kind="show" identifier="toHome" id="Vff-sP-qyX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ChH-jd-Oxw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -295,7 +294,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Vde-Gx-lBU">
-                                <rect key="frame" x="18" y="348" width="378" height="112"/>
+                                <rect key="frame" x="18" y="348" width="378" height="174"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w6P-qo-J0j">
                                         <rect key="frame" x="0.0" y="0.0" width="378" height="50"/>
@@ -314,7 +313,21 @@
                                             <constraint firstAttribute="height" constant="50" id="ql0-cc-179"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="Levels"/>
+                                        <state key="normal" title="Player Stats"/>
+                                        <connections>
+                                            <action selector="playerStatsPushed:" destination="UHY-VU-TBK" eventType="touchUpInside" id="LrY-a4-O6R"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w5O-gC-wPH">
+                                        <rect key="frame" x="0.0" y="124" width="378" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="JjM-1N-bPo"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Log Out"/>
+                                        <connections>
+                                            <segue destination="Fde-Wx-0fB" kind="unwind" unwindAction="unwind:" id="zVI-xY-cy0"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -333,14 +346,75 @@
                     <navigationItem key="navigationItem" id="uwR-YO-biC"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="levelsButton" destination="kU1-n7-wfm" id="Uug-of-y6B"/>
+                        <outlet property="logOutButton" destination="w5O-gC-wPH" id="8d7-8Z-Pgo"/>
                         <outlet property="playGameButton" destination="w6P-qo-J0j" id="ykC-gt-RlR"/>
+                        <outlet property="statsButton" destination="kU1-n7-wfm" id="hCU-U9-25P"/>
                         <outlet property="welcomeLabel" destination="rel-on-DA7" id="MwZ-lu-8uy"/>
+                        <segue destination="dnm-8M-rCg" kind="show" identifier="statsSegue" id="vXY-Ko-7ek"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f7i-Bh-Ou3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Fde-Wx-0fB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1790" y="51"/>
+        </scene>
+        <!--Player Stats View Controller-->
+        <scene sceneID="h8T-N7-aiO">
+            <objects>
+                <viewController id="dnm-8M-rCg" customClass="PlayerStatsViewController" customModule="Breakout" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fM9-RD-ar3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKx-eS-46A">
+                                <rect key="frame" x="16" y="144" width="382" height="32.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIu-LQ-X4u">
+                                <rect key="frame" x="16" y="192.5" width="382" height="25.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLZ-Vs-Qxy">
+                                <rect key="frame" x="16" y="796" width="382" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="T1n-ft-dsc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Home"/>
+                                <connections>
+                                    <segue destination="DHC-lq-qes" kind="unwind" unwindAction="unwindToHome:" id="d05-c3-Oce"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="xeN-VI-Ox0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="EIu-LQ-X4u" firstAttribute="top" secondItem="iKx-eS-46A" secondAttribute="bottom" constant="16" id="1fz-zI-XNS"/>
+                            <constraint firstItem="xeN-VI-Ox0" firstAttribute="trailing" secondItem="QLZ-Vs-Qxy" secondAttribute="trailing" constant="16" id="6pm-Hs-XWX"/>
+                            <constraint firstItem="xeN-VI-Ox0" firstAttribute="trailing" secondItem="EIu-LQ-X4u" secondAttribute="trailing" constant="16" id="Aex-Y7-rlc"/>
+                            <constraint firstItem="iKx-eS-46A" firstAttribute="top" secondItem="xeN-VI-Ox0" secondAttribute="top" constant="100" id="KQ2-aB-OZx"/>
+                            <constraint firstItem="xeN-VI-Ox0" firstAttribute="trailing" secondItem="iKx-eS-46A" secondAttribute="trailing" constant="16" id="atO-Ik-huC"/>
+                            <constraint firstItem="QLZ-Vs-Qxy" firstAttribute="leading" secondItem="xeN-VI-Ox0" secondAttribute="leading" constant="16" id="hed-ga-hlL"/>
+                            <constraint firstItem="iKx-eS-46A" firstAttribute="leading" secondItem="xeN-VI-Ox0" secondAttribute="leading" constant="16" id="sB8-TN-7lx"/>
+                            <constraint firstItem="xeN-VI-Ox0" firstAttribute="bottom" secondItem="QLZ-Vs-Qxy" secondAttribute="bottom" constant="16" id="sM6-F5-9LM"/>
+                            <constraint firstItem="EIu-LQ-X4u" firstAttribute="leading" secondItem="fM9-RD-ar3" secondAttribute="leading" constant="16" id="yF4-Xi-dF1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="J74-uI-CfD"/>
+                    <connections>
+                        <outlet property="homeButton" destination="QLZ-Vs-Qxy" id="HGF-Va-bVQ"/>
+                        <outlet property="scoreLabel" destination="EIu-LQ-X4u" id="Ibz-EF-FQR"/>
+                        <outlet property="userNameLabel" destination="iKx-eS-46A" id="K6J-2m-gM5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="In3-T8-PWl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="DHC-lq-qes" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2748" y="366"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

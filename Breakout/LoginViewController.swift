@@ -33,6 +33,17 @@ class LoginViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier{
+            if identifier == "loginToHome"{
+                if let HomeVC = segue.destination as? HomePageViewController{
+                    let email = emailTextField.text!
+                    HomeVC.emailOptional = email
+                }
+            }
+        }
+    }
 
     @IBAction func loginPressed(_ sender: UIButton) {
         let empty = validateTextFields()

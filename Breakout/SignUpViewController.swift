@@ -8,9 +8,11 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseDatabase
 
 class SignUpViewController: UIViewController {
 
+    var ref: DatabaseReference!
     @IBOutlet var firstNameTextField: UITextField!
     @IBOutlet var lastNameTextField: UITextField!
     @IBOutlet var emailTextField: UITextField!
@@ -21,6 +23,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet var errorLabel: UILabel!
     
     override func viewDidLoad() {
+        ref = Database.database().reference()
         super.viewDidLoad()
         errorLabel.alpha = 0
         // Do any additional setup after loading the view.
@@ -38,6 +41,17 @@ class SignUpViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier{
+            if identifier == "signUpToHome"{
+                if let homeVC = segue.destination as? HomePageViewController{
+                    let email = emailTextField.text!
+                    homeVC.emailOptional = email
+                }
+            }
+        }
+    }
+    
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
         let error = validateTextFields()
         
@@ -54,12 +68,8 @@ class SignUpViewController: UIViewController {
                 if err != nil {
                     self.displayError("Error creating user")
                 }else{
-                    let db = Firestore.firestore()
-                    db.collection("Users").addDocument(data: ["firstname":firstName, "lastname":lastName, "email":email, "username": username, "password":password]) { (error) in
-                        if error != nil{
-                            self.displayError("Something went wrong!")
-                        }
-                    }
+                    let uid = Auth.auth().currentUser?.uid
+                    self.ref.child("users").child(uid!).setValue(["firstName": firstName, "lastName": lastName, "email": email, "username": username, "password": password, "points": 0])
                     self.performSegue(withIdentifier: "signUpToHome", sender: self)
                 }
             }
