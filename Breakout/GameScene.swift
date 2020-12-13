@@ -6,7 +6,8 @@
 //
 // image from flaticon.com
 // Icons made by <a href="https://www.flaticon.com/authors/smartline" title="Smartline">Smartline</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
-
+//Icons made by <a href="https://www.flaticon.com/authors/alfredo-hernandez" title="Alfredo Hernandez">Alfredo Hernandez</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+// Icons made by <a href="https://www.flaticon.com/authors/vitaly-gorbachev" title="Vitaly Gorbachev">Vitaly Gorbachev</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 
 
 
@@ -47,7 +48,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             label.alpha = 0.0
             label.run(SKAction.fadeIn(withDuration: 2.0))
         }
-        
+        self.physicsWorld.contactDelegate = self
         //creates the boundaries
         //let borderBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         // 2
@@ -61,18 +62,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         print("in setup")
         print("width \(self.frame.width), height \(self.frame.height)")
     
-        //ball.physicsBody
-        ball = SKSpriteNode(imageNamed: "tennis" )
+        ball = SKSpriteNode(imageNamed: "fitness-ball" )
         ball.size = CGSize(width: 100, height: 100)
         ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.height/2)
         ball.physicsBody?.angularDamping = 0
         ball.physicsBody?.linearDamping = 0
         ball.physicsBody?.friction = 0
-        ball.physicsBody?.restitution = 1
+        ball.physicsBody?.restitution = 1.01
         ball.physicsBody?.isDynamic = true
         ball.physicsBody?.categoryBitMask = NodeCategory.ball.rawValue
         ball.physicsBody?.contactTestBitMask = NodeCategory.block.rawValue
-        ball.physicsBody?.collisionBitMask = NodeCategory.walls.rawValue | NodeCategory.paddle.rawValue
+        ball.physicsBody?.collisionBitMask = NodeCategory.walls.rawValue | NodeCategory.paddle.rawValue | NodeCategory.block.rawValue
         ball.physicsBody?.allowsRotation = true
         addChild(ball)
         
@@ -120,8 +120,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         paddle.physicsBody?.collisionBitMask = NodeCategory.walls.rawValue
         addChild(paddle)
         
+        block = SKSpriteNode(color: .yellow, size: CGSize(width: 100, height: 100))
+        block.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: block.size.width, height: block.size.height))
+        block.position = CGPoint(x: self.frame.midX, y: self.frame.maxY / 4)
+        block.physicsBody?.isDynamic = false
+        block.physicsBody?.restitution = 1
+        block.physicsBody?.categoryBitMask = NodeCategory.block.rawValue
+        //block.physicsBody?.collisionBitMask = NodeCategory.block.rawValue
+        block.physicsBody?.contactTestBitMask = NodeCategory.ball.rawValue
+        addChild(block)
+        
+        /*var i: Int = 0
+        while i != 3 {
+            block.position = CGPoint(x: self.frame.midX + 50, y: self.frame.maxY / 4)
+            block.name = "block" + String(i)
+            addChild(block)
+            i += 1
+        }*/
+        /*var i: Int = 0
+        var boxTexture = SKTexture(imageNamed: "square")
+        while  (i != 3) {
+            // Create box with defined texture
+            var box = SKSpriteNode(texture: boxTexture);
+            box.size = CGSize(width: 200, height: 200)
+            // Set position of box dynamically
+            box.position = CGPoint(x: self.frame.midX + CGFloat(i) * 100.0, y: self.frame.maxY/4);
+            // Name for easier use (may need to change if you have multiple rows generated)
+            box.name = "box"+String(i);
+            // Add box to scene
+            addChild(box);
+            i+=1
+        }*/
+        
         
     }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        print("in did begin")
+        if contact.bodyA.categoryBitMask == NodeCategory.block.rawValue || contact.bodyB.categoryBitMask == NodeCategory.block.rawValue {
+            print("ball has contact with a block")
+            contact.bodyA.categoryBitMask == NodeCategory.block.rawValue ? contact.bodyA.node?.removeFromParent() : contact.bodyB.node?.removeFromParent()
+        }
+    }
+    
     
     
     func touchDown(atPoint pos : CGPoint) {
