@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		590E00602585C883008AB100 /* PlayerStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E005F2585C883008AB100 /* PlayerStatsViewController.swift */; };
 		599AD21D25748D5D00826EE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599AD21C25748D5D00826EE6 /* AppDelegate.swift */; };
 		599AD21F25748D5D00826EE6 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 599AD21E25748D5D00826EE6 /* GameScene.sks */; };
 		599AD22125748D5D00826EE6 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 599AD22025748D5D00826EE6 /* Actions.sks */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		47FDF83325F75AA662FDF9B6 /* Pods_Breakout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Breakout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		590E005F2585C883008AB100 /* PlayerStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatsViewController.swift; sourceTree = "<group>"; };
 		599AD21925748D5D00826EE6 /* Breakout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Breakout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		599AD21C25748D5D00826EE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		599AD21E25748D5D00826EE6 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				599AD22925748D5F00826EE6 /* Assets.xcassets */,
 				599AD22B25748D5F00826EE6 /* Info.plist */,
 				59F809DC2585959A00708558 /* Styling.swift */,
+				590E005F2585C883008AB100 /* PlayerStatsViewController.swift */,
 			);
 			path = Breakout;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				599AD23925748D8F00826EE6 /* HomePageViewController.swift in Sources */,
 				59F809DD2585959A00708558 /* Styling.swift in Sources */,
 				599AD23725748D8F00826EE6 /* InitialViewController.swift in Sources */,
+				590E00602585C883008AB100 /* PlayerStatsViewController.swift in Sources */,
 				599AD22325748D5D00826EE6 /* GameScene.swift in Sources */,
 				599AD22525748D5D00826EE6 /* GameViewController.swift in Sources */,
 				599AD23625748D8F00826EE6 /* SignUpViewController.swift in Sources */,

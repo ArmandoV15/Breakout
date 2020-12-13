@@ -12,15 +12,16 @@ class HomePageViewController: UIViewController {
     var emailOptional: String? = nil
     @IBOutlet var welcomeLabel: UILabel!
     @IBOutlet var playGameButton: UIButton!
-    @IBOutlet var levelsButton: UIButton!
+    @IBOutlet var statsButton: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("in Home")
+        print(emailOptional!)
         // Do any additional setup after loading the view.
         Styling.styleFillButton(playGameButton)
-        Styling.styleFillButton(levelsButton)
+        Styling.styleFillButton(statsButton)
     }
     
 
@@ -33,5 +34,11 @@ class HomePageViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    @IBAction func playerStatsPushed(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "statsSegue", sender: self)
+    }
+    
+    @IBAction func unwindToHome(_ segue: UIStoryboardSegue){
+    }
 }
