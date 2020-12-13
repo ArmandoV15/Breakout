@@ -12,10 +12,14 @@ class LoginViewController: UIViewController {
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var errorLabel: UILabel!
+    @IBOutlet var loginButton: UIButton!
+    @IBOutlet var cancelButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         errorLabel.alpha = 0
+        Styling.styleFillButton(loginButton)
+        Styling.styleHollowButton(cancelButton)
         // Do any additional setup after loading the view.
     }
     

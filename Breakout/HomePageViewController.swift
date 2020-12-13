@@ -11,12 +11,16 @@ class HomePageViewController: UIViewController {
 
     var emailOptional: String? = nil
     @IBOutlet var welcomeLabel: UILabel!
+    @IBOutlet var playGameButton: UIButton!
+    @IBOutlet var levelsButton: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("in Home")
         // Do any additional setup after loading the view.
+        Styling.styleFillButton(playGameButton)
+        Styling.styleFillButton(levelsButton)
     }
     
 

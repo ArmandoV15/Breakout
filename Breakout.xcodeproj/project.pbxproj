@@ -19,7 +19,8 @@
 		599AD23825748D8F00826EE6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599AD23425748D8F00826EE6 /* LoginViewController.swift */; };
 		599AD23925748D8F00826EE6 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599AD23525748D8F00826EE6 /* HomePageViewController.swift */; };
 		59E08EC52575FFF30007A716 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59E08EC42575FFF30007A716 /* LaunchScreen.storyboard */; };
-		5B5E85822579B2EC000654E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B5E85812579B2EC000654E3 /* GoogleService-Info.plist */; };
+		59F809DA258593FE00708558 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59F809D9258593FE00708558 /* GoogleService-Info.plist */; };
+		59F809DD2585959A00708558 /* Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F809DC2585959A00708558 /* Styling.swift */; };
 		CECDE0CB2C143C9952021F45 /* Pods_Breakout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47FDF83325F75AA662FDF9B6 /* Pods_Breakout.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,7 +40,8 @@
 		599AD23425748D8F00826EE6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		599AD23525748D8F00826EE6 /* HomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		59E08EC42575FFF30007A716 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		5B5E85812579B2EC000654E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		59F809D9258593FE00708558 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		59F809DC2585959A00708558 /* Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styling.swift; sourceTree = "<group>"; };
 		65ACEB902CDD1223889B6254 /* Pods-Breakout.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Breakout.release.xcconfig"; path = "Target Support Files/Pods-Breakout/Pods-Breakout.release.xcconfig"; sourceTree = "<group>"; };
 		82E84804022755C739727CE9 /* Pods-Breakout.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Breakout.debug.xcconfig"; path = "Target Support Files/Pods-Breakout/Pods-Breakout.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,9 +99,10 @@
 				599AD23325748D8F00826EE6 /* InitialViewController.swift */,
 				599AD23425748D8F00826EE6 /* LoginViewController.swift */,
 				599AD23225748D8F00826EE6 /* SignUpViewController.swift */,
+				59F809D9258593FE00708558 /* GoogleService-Info.plist */,
 				599AD22925748D5F00826EE6 /* Assets.xcassets */,
 				599AD22B25748D5F00826EE6 /* Info.plist */,
-				5B5E85812579B2EC000654E3 /* GoogleService-Info.plist */,
+				59F809DC2585959A00708558 /* Styling.swift */,
 			);
 			path = Breakout;
 			sourceTree = "<group>";
@@ -176,7 +179,7 @@
 				599AD22A25748D5F00826EE6 /* Assets.xcassets in Resources */,
 				59E08EC52575FFF30007A716 /* LaunchScreen.storyboard in Resources */,
 				599AD22125748D5D00826EE6 /* Actions.sks in Resources */,
-				5B5E85822579B2EC000654E3 /* GoogleService-Info.plist in Resources */,
+				59F809DA258593FE00708558 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +234,7 @@
 			files = (
 				599AD23825748D8F00826EE6 /* LoginViewController.swift in Sources */,
 				599AD23925748D8F00826EE6 /* HomePageViewController.swift in Sources */,
+				59F809DD2585959A00708558 /* Styling.swift in Sources */,
 				599AD23725748D8F00826EE6 /* InitialViewController.swift in Sources */,
 				599AD22325748D5D00826EE6 /* GameScene.swift in Sources */,
 				599AD22525748D5D00826EE6 /* GameViewController.swift in Sources */,

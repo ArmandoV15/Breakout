@@ -15,6 +15,8 @@ class InitialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Styling.styleFillButton(signUpButton)
+        Styling.styleHollowButton(loginButton)
 
         // Do any additional setup after loading the view.
     }

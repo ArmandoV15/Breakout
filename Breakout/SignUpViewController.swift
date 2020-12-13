@@ -17,12 +17,15 @@ class SignUpViewController: UIViewController {
     @IBOutlet var usernameTextField: UITextField!
     @IBOutlet var passwordTextFeild: UITextField!
     @IBOutlet var signUpButton: UIButton!
+    @IBOutlet var cancelButton: UIButton!
     @IBOutlet var errorLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         errorLabel.alpha = 0
         // Do any additional setup after loading the view.
+        Styling.styleFillButton(signUpButton)
+        Styling.styleHollowButton(cancelButton)
     }
     
 
