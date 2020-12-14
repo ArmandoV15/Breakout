@@ -9,6 +9,8 @@
 //Icons made by <a href="https://www.flaticon.com/authors/alfredo-hernandez" title="Alfredo Hernandez">Alfredo Hernandez</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 // Icons made by <a href="https://www.flaticon.com/authors/vitaly-gorbachev" title="Vitaly Gorbachev">Vitaly Gorbachev</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 
+//Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+
 
 
 import SpriteKit
@@ -22,6 +24,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var lastUpdateTime : TimeInterval = 0
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
+    var pause = SKSpriteNode()
     var ball = SKSpriteNode()
     var paddle = SKSpriteNode()
     //var block = SKSpriteNode()
@@ -64,6 +67,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func setupNodes() {
         print("in setup")
         print("width \(self.frame.width), height \(self.frame.height)")
+        
+        pause = SKSpriteNode(imageNamed: "pause-button")
+        pause.position = CGPoint(x: self.frame.maxX - 75, y: self.frame.maxY - 50)
+        pause.size = CGSize(width: 70, height: 70)
+        addChild(pause)
     
         ball = SKSpriteNode(imageNamed: "fitness-ball" )
         ball.size = CGSize(width: 100, height: 100)
@@ -202,6 +210,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
+        if pause.contains(touchLocation){
+            self.isPaused = true
+        }
         
         //for t in touches { self.touchDown(atPoint: t.location(in: self)) }
     }
