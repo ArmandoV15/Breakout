@@ -386,7 +386,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Home"/>
                                 <connections>
-                                    <segue destination="DHC-lq-qes" kind="unwind" unwindAction="unwindToHome:" id="d05-c3-Oce"/>
+                                    <segue destination="DHC-lq-qes" kind="unwind" unwindAction="unwindFromStats:" id="s96-xj-eF6"/>
                                 </connections>
                             </button>
                         </subviews>

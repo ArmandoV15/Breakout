@@ -19,7 +19,6 @@ class HomePageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("in Home")
-        print(emailOptional!)
         // Do any additional setup after loading the view.
         Styling.styleFillButton(playGameButton)
         Styling.styleFillButton(statsButton)
@@ -52,6 +51,10 @@ class HomePageViewController: UIViewController {
         self.performSegue(withIdentifier: "statsSegue", sender: self)
     }
     
-    @IBAction func unwindToHome(_ segue: UIStoryboardSegue){
+    @IBAction func unwindFromStats(_ segue: UIStoryboardSegue){
+    }
+    
+    @IBAction func unwindFromGame(_ segue: UIStoryboardSegue){
+        
     }
 }

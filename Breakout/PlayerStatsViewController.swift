@@ -19,7 +19,6 @@ class PlayerStatsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         Styling.styleFillButton(homeButton)
-        print(emailOptional!)
         getStats()
         // Do any additional setup after loading the view.
     }
@@ -40,10 +39,9 @@ class PlayerStatsViewController: UIViewController {
         Database.database().reference().child("users").child(uid!).observeSingleEvent(of: .value) { (snapshot) in
             let dictionary = snapshot.value as? NSDictionary
             let username = dictionary?["username"] as? String ?? ""
-            let score = dictionary?["points"] as? Int ?? 1
+            let score = dictionary?["points"] as? Int ?? 0
             self.userNameLabel.text = username
             self.scoreLabel.text = "Total Points: \(score)"
-            print(uid ?? "")
         }
     }
 }
