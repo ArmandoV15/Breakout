@@ -21,8 +21,12 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="ZR9-rl-Yz4"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="Mef-SR-pSN" kind="unwind" identifier="goHome" unwindAction="unwindFromGame:" id="g6I-xg-ThF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+                <exit id="Mef-SR-pSN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2747.826086956522" y="-326.11607142857139"/>
         </scene>

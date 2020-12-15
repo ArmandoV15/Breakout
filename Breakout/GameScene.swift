@@ -11,6 +11,10 @@
 
 //Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 
+//Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+
+// Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+
 
 
 import SpriteKit
@@ -20,11 +24,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
+    var gameViewController: UIViewController?
     
     private var lastUpdateTime : TimeInterval = 0
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     var pause = SKSpriteNode()
+    var home = SKSpriteNode()
+    var resume = SKSpriteNode()
     var ball = SKSpriteNode()
     var paddle = SKSpriteNode()
     //var block = SKSpriteNode()
@@ -72,6 +79,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         pause.position = CGPoint(x: self.frame.maxX - 75, y: self.frame.maxY - 50)
         pause.size = CGSize(width: 70, height: 70)
         addChild(pause)
+        
+        resume = SKSpriteNode(imageNamed: "play")
+        resume.position = CGPoint(x: self.frame.maxX / 2, y: 0)
+        resume.size = CGSize(width: 200, height: 200)
+        
+        home = SKSpriteNode(imageNamed: "left-arrow")
+        home.position = CGPoint(x: self.frame.maxX / -2, y: 0)
+        home.size = CGSize(width: 200, height: 200)
+        
+        
     
         ball = SKSpriteNode(imageNamed: "fitness-ball" )
         ball.size = CGSize(width: 100, height: 100)
@@ -212,6 +229,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if pause.contains(touchLocation){
             self.isPaused = true
+            addChild(resume)
+            addChild(home)
+        }
+        
+        if resume.contains(touchLocation){
+            resume.removeFromParent()
+            home.removeFromParent()
+            self.isPaused = false
+        }
+        
+        if home.contains(touchLocation){
+            print("In home touch")
+            self.scene?.removeFromParent()
+            self.gameViewController?.performSegue(withIdentifier: "goHome", sender: gameViewController)
         }
         
         //for t in touches { self.touchDown(atPoint: t.location(in: self)) }
