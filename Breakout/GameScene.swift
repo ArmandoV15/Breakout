@@ -15,6 +15,7 @@
 
 // Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 
+//Icons made by <a href="https://flat-icons.com/" title="Flat Icons">Flat Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 
 
 import SpriteKit
@@ -31,7 +32,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var spinnyNode : SKShapeNode?
     var pause = SKSpriteNode()
     var home = SKSpriteNode()
+    var home2 = SKSpriteNode()
     var resume = SKSpriteNode()
+    var restart = SKSpriteNode()
     var ball = SKSpriteNode()
     var paddle = SKSpriteNode()
     //var block = SKSpriteNode()
@@ -87,6 +90,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         home = SKSpriteNode(imageNamed: "left-arrow")
         home.position = CGPoint(x: self.frame.maxX / -2, y: 0)
         home.size = CGSize(width: 200, height: 200)
+        
+        restart = SKSpriteNode(imageNamed: "arrows")
+        restart.position = CGPoint(x: 0, y: self.frame.maxY / -3)
+        restart.size = CGSize(width: 200, height: 200)
+        
+        home2 = SKSpriteNode(imageNamed: "left-arrow")
+        home2.position = CGPoint(x: 0, y: self.frame.maxY / 3)
+        home2.size = CGSize(width: 200, height: 200)
         
         
     
@@ -180,7 +191,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         if contact.bodyA.categoryBitMask == NodeCategory.bottom.rawValue || contact.bodyB.categoryBitMask == NodeCategory.bottom.rawValue {
                 print("ball has contact with bottom")
-            //self.isPaused = true
+            self.isPaused = true
+            addChild(home2)
+            addChild(restart)
         }
         
     }
@@ -236,13 +249,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if resume.contains(touchLocation){
             resume.removeFromParent()
             home.removeFromParent()
+            restart.removeFromParent()
             self.isPaused = false
         }
         
         if home.contains(touchLocation){
             print("In home touch")
-            self.scene?.removeFromParent()
-            self.gameViewController?.performSegue(withIdentifier: "goHome", sender: gameViewController)
+            if let nav = self.view?.window?.rootViewController as? UINavigationController
+            {
+                nav.popViewController(animated: true)
+            }
+        }
+        
+        if home2.contains(touchLocation){
+            print("In home touch")
+            if let nav = self.view?.window?.rootViewController as? UINavigationController
+            {
+                nav.popViewController(animated: true)
+            }
+        }
+        
+        
+        if restart.contains(touchLocation){
+            self.removeAllChildren()
+            setupNodes()
+            self.isPaused = false
         }
         
         //for t in touches { self.touchDown(atPoint: t.location(in: self)) }
