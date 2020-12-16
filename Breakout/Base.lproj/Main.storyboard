@@ -18,11 +18,17 @@
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="ZR9-rl-Yz4"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="Mef-SR-pSN" kind="unwind" identifier="goHome" unwindAction="unwindFromGame:" id="g6I-xg-ThF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+                <exit id="Mef-SR-pSN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2749" y="-326"/>
+            <point key="canvasLocation" x="2747.826086956522" y="-326.11607142857139"/>
         </scene>
         <!--Initial View Controller-->
         <scene sceneID="aKZ-hI-nER">
@@ -414,7 +420,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="In3-T8-PWl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="DHC-lq-qes" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2748" y="366"/>
+            <point key="canvasLocation" x="2747.826086956522" y="365.625"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
