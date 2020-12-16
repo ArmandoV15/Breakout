@@ -20,6 +20,8 @@
 
 import SpriteKit
 import GameplayKit
+import FirebaseDatabase
+import FirebaseAuth
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -217,6 +219,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.isPaused = true
                 addChild(home2)
                 addChild(restart)
+                let uid = Auth.auth().currentUser?.uid
+                Database.database().reference().child("users").child(uid!).observeSingleEvent(of: .value) { (snapshot) in
+                    let dictionary = snapshot.value as? NSDictionary
+                    let oldScore = dictionary?["points"] as? Int ?? 0
+                    let newScore = self.score + oldScore
+                    Database.database().reference().child("users/\(uid!)/points").setValue(newScore)
+                }
             }
         }
         if contact.bodyA.categoryBitMask == NodeCategory.paddle.rawValue || contact.bodyB.categoryBitMask == NodeCategory.paddle.rawValue {
