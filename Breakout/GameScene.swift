@@ -43,6 +43,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var rightWall = SKSpriteNode()
     var leftWall = SKSpriteNode()
     
+    var numBlocks: Int = 0
+    var score: Int = 0
+    
     enum NodeCategory: UInt32 {
         case ball = 1 // 0001
         case walls = 2 // 0010
@@ -159,7 +162,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         paddle.physicsBody?.collisionBitMask = NodeCategory.walls.rawValue
         addChild(paddle)
         
-        let numBlocks = 4
+        numBlocks = 4
         
         for i in 0 ..< numBlocks {
             let block = SKSpriteNode(color: .yellow, size: CGSize(width: 100, height: 100))
@@ -180,10 +183,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if contact.bodyA.categoryBitMask == NodeCategory.block.rawValue || contact.bodyB.categoryBitMask == NodeCategory.block.rawValue {
             print("ball has contact with a block")
             contact.bodyA.categoryBitMask == NodeCategory.block.rawValue ? contact.bodyA.node?.removeFromParent() : contact.bodyB.node?.removeFromParent()
+            numBlocks -= 1
+            score += 1
+            print(score)
+            if numBlocks == 0 {
+                self.isPaused = true
+                addChild(home2)
+                addChild(restart)
+            }
         }
         if contact.bodyA.categoryBitMask == NodeCategory.paddle.rawValue || contact.bodyB.categoryBitMask == NodeCategory.paddle.rawValue {
                 print("ball has contact with a paddle")
-            ball.physicsBody?.applyImpulse(CGVector(dx:8, dy: 4))
+            ball.physicsBody?.applyImpulse(CGVector(dx:2, dy: 4))
         }
         if contact.bodyA.categoryBitMask == NodeCategory.walls.rawValue || contact.bodyB.categoryBitMask == NodeCategory.walls.rawValue {
                 print("ball has contact with a wall")
