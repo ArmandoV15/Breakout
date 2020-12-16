@@ -45,6 +45,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var numBlocks: Int = 0
     var score: Int = 0
+    var totalBlocks = 0
     
     enum NodeCategory: UInt32 {
         case ball = 1 // 0001
@@ -113,7 +114,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ball.physicsBody?.restitution = 1
         ball.physicsBody?.isDynamic = true
         ball.physicsBody?.categoryBitMask = NodeCategory.ball.rawValue
-        ball.physicsBody?.contactTestBitMask = NodeCategory.block.rawValue | NodeCategory.paddle.rawValue | NodeCategory.ball.rawValue | NodeCategory.bottom.rawValue
+        ball.physicsBody?.contactTestBitMask = NodeCategory.block.rawValue | NodeCategory.paddle.rawValue | NodeCategory.walls.rawValue | NodeCategory.bottom.rawValue
         ball.physicsBody?.collisionBitMask = NodeCategory.walls.rawValue | NodeCategory.paddle.rawValue | NodeCategory.block.rawValue | NodeCategory.bottom.rawValue
         ball.physicsBody?.allowsRotation = true
         addChild(ball)
@@ -132,6 +133,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         rightWall.physicsBody?.isDynamic = false
         rightWall.physicsBody?.friction = 0
         rightWall.physicsBody?.categoryBitMask = NodeCategory.walls.rawValue
+        rightWall.physicsBody?.restitution = 0.2
         addChild(rightWall)
         
         leftWall = SKSpriteNode(color: .blue, size: CGSize(width: 30, height: self.frame.height * 2))
@@ -139,6 +141,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         leftWall.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: leftWall.size.width, height: leftWall.size.height))
         leftWall.physicsBody?.isDynamic = false
         leftWall.physicsBody?.categoryBitMask = NodeCategory.walls.rawValue
+        leftWall.physicsBody?.restitution = 0.2
         addChild(leftWall)
         
         ceiling = SKSpriteNode(color: .blue, size: CGSize(width: self.frame.width, height: 100.0))
@@ -163,6 +166,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(paddle)
         
         numBlocks = 4
+        totalBlocks = 12
+        score = 0
         
         for i in 0 ..< numBlocks {
             let block = SKSpriteNode(color: .yellow, size: CGSize(width: 100, height: 100))
@@ -171,7 +176,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             block.physicsBody?.isDynamic = false
             block.physicsBody?.restitution = 1
             block.physicsBody?.categoryBitMask = NodeCategory.block.rawValue
-        //block.physicsBody?.collisionBitMask = NodeCategory.block.rawValue
+            block.physicsBody?.contactTestBitMask = NodeCategory.ball.rawValue
+            addChild(block)
+        }
+        
+        for i in 0 ..< numBlocks {
+            let block = SKSpriteNode(color: .yellow, size: CGSize(width: 100, height: 100))
+            block.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: block.size.width, height: block.size.height))
+            block.position = CGPoint(x: self.frame.minX + 80 + CGFloat((i) * 200), y: self.frame.maxY - 350)
+            block.physicsBody?.isDynamic = false
+            block.physicsBody?.restitution = 1
+            block.physicsBody?.categoryBitMask = NodeCategory.block.rawValue
+            block.physicsBody?.contactTestBitMask = NodeCategory.ball.rawValue
+            addChild(block)
+        }
+        
+        for i in 0 ..< numBlocks {
+            let block = SKSpriteNode(color: .yellow, size: CGSize(width: 100, height: 100))
+            block.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: block.size.width, height: block.size.height))
+            block.position = CGPoint(x: self.frame.minX + 80 + CGFloat((i) * 200), y: self.frame.maxY - 300)
+            block.physicsBody?.isDynamic = false
+            block.physicsBody?.restitution = 1
+            block.physicsBody?.categoryBitMask = NodeCategory.block.rawValue
             block.physicsBody?.contactTestBitMask = NodeCategory.ball.rawValue
             addChild(block)
         }
@@ -183,10 +209,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if contact.bodyA.categoryBitMask == NodeCategory.block.rawValue || contact.bodyB.categoryBitMask == NodeCategory.block.rawValue {
             print("ball has contact with a block")
             contact.bodyA.categoryBitMask == NodeCategory.block.rawValue ? contact.bodyA.node?.removeFromParent() : contact.bodyB.node?.removeFromParent()
-            numBlocks -= 1
+            ball.physicsBody?.applyImpulse(CGVector(dx: 4, dy: 0))
+            totalBlocks -= 1
             score += 1
             print(score)
-            if numBlocks == 0 {
+            if totalBlocks == 0 {
                 self.isPaused = true
                 addChild(home2)
                 addChild(restart)
@@ -194,7 +221,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         if contact.bodyA.categoryBitMask == NodeCategory.paddle.rawValue || contact.bodyB.categoryBitMask == NodeCategory.paddle.rawValue {
                 print("ball has contact with a paddle")
-            ball.physicsBody?.applyImpulse(CGVector(dx:2, dy: 4))
+            ball.physicsBody?.applyImpulse(CGVector(dx:0, dy: 10))
         }
         if contact.bodyA.categoryBitMask == NodeCategory.walls.rawValue || contact.bodyB.categoryBitMask == NodeCategory.walls.rawValue {
                 print("ball has contact with a wall")
