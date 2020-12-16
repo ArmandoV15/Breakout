@@ -194,7 +194,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for i in 0 ..< numBlocks {
             let block = SKSpriteNode(color: .yellow, size: CGSize(width: 100, height: 100))
             block.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: block.size.width, height: block.size.height))
-            block.position = CGPoint(x: self.frame.minX + 80 + CGFloat((i) * 200), y: self.frame.maxY - 300)
+            block.position = CGPoint(x: self.frame.minX + 80 + CGFloat((i) * 200), y: self.frame.maxY - 200)
             block.physicsBody?.isDynamic = false
             block.physicsBody?.restitution = 1
             block.physicsBody?.categoryBitMask = NodeCategory.block.rawValue
@@ -322,15 +322,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let touch = touches.first
         let touchLocation = touch!.location(in: self)
-        //let previousLocation = touch!.previousLocation(in: self)
-
-        //let paddle = childNode(withName: "paddle") as! SKSpriteNode
-            // 4
-        //let paddleX = paddle.position.x + (touchLocation.x - previousLocation.x)
-            // 5
-        //paddleX = max(paddleX, size.width/2)
-        //paddleX = min(paddleX, size.width)
-        // 6
         paddle.position = CGPoint(x: touchLocation.x, y: paddle.position.y)
         
         
