@@ -17,6 +17,8 @@
 
 //Icons made by <a href="https://flat-icons.com/" title="Flat Icons">Flat Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 
+//Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+
 
 import SpriteKit
 import GameplayKit
@@ -32,11 +34,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var lastUpdateTime : TimeInterval = 0
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
+    var scoreLabel = SKLabelNode(fontNamed: "BubbleGum")
     var pause = SKSpriteNode()
     var home = SKSpriteNode()
     var home2 = SKSpriteNode()
     var resume = SKSpriteNode()
     var restart = SKSpriteNode()
+    var trophy = SKSpriteNode()
     var ball = SKSpriteNode()
     var paddle = SKSpriteNode()
     //var block = SKSpriteNode()
@@ -84,6 +88,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         print("in setup")
         print("width \(self.frame.width), height \(self.frame.height)")
         
+        scoreLabel.fontSize = 45
+        scoreLabel.zPosition = 2
+        scoreLabel.color = SKColor.white
+        scoreLabel.text = "Score: 0"
+        scoreLabel.position = CGPoint(x: self.frame.minX + 90, y: self.frame.maxY - 55)
+        addChild(scoreLabel)
+        
         pause = SKSpriteNode(imageNamed: "pause-button")
         pause.position = CGPoint(x: self.frame.maxX - 75, y: self.frame.maxY - 50)
         pause.size = CGSize(width: 70, height: 70)
@@ -105,6 +116,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         home2.position = CGPoint(x: 0, y: self.frame.maxY / 3)
         home2.size = CGSize(width: 200, height: 200)
         
+        trophy = SKSpriteNode(imageNamed: "winner")
+        trophy.position = CGPoint(x: 0, y: 0)
+        trophy.size = CGSize(width: 200, height: 200)
         
     
         ball = SKSpriteNode(imageNamed: "fitness-ball" )
@@ -214,9 +228,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             ball.physicsBody?.applyImpulse(CGVector(dx: 4, dy: 0))
             totalBlocks -= 1
             score += 1
+            scoreLabel.text = "Score: \(score)"
             print(score)
             if totalBlocks == 0 {
                 self.isPaused = true
+                addChild(trophy)
                 addChild(home2)
                 addChild(restart)
                 let uid = Auth.auth().currentUser?.uid
