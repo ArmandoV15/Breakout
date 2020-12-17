@@ -2,7 +2,8 @@
 //  GameScene.swift
 //  Breakout
 //
-//  Created by Valdez, Armando Anthony on 11/29/20.
+//  Created by Valdez, Armando Anthony, Jalen Tacsiat on 11/29/20.
+//
 //
 // image from flaticon.com
 // Icons made by <a href="https://www.flaticon.com/authors/smartline" title="Smartline">Smartline</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
@@ -16,7 +17,7 @@
 // Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 
 //Icons made by <a href="https://flat-icons.com/" title="Flat Icons">Flat Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
-
+//Tutorials: https://www.raywenderlich.com/1161-how-to-make-a-breakout-game-with-spritekit-and-swift-part-1#toc-anchor-010
 
 import SpriteKit
 import GameplayKit
@@ -69,17 +70,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             label.run(SKAction.fadeIn(withDuration: 2.0))
         }
         self.physicsWorld.contactDelegate = self
-        //creates the boundaries
-        //let borderBody = SKPhysicsBody(edgeLoopFrom: self.frame)
-        // 2
-        //borderBody.friction = 0
-        // 3
-        //self.physicsBody = borderBody
         setupNodes()
     }
     
     
-    
+    /**
+     adds all SpriteKitNodes to the scene
+     */
     func setupNodes() {
         print("in setup")
         print("width \(self.frame.width), height \(self.frame.height)")
@@ -113,7 +110,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ball.physicsBody?.angularDamping = 0
         ball.physicsBody?.linearDamping = 0
         ball.physicsBody?.friction = 0
-        ball.physicsBody?.restitution = 1
+        ball.physicsBody?.restitution = 1.02
         ball.physicsBody?.isDynamic = true
         ball.physicsBody?.categoryBitMask = NodeCategory.ball.rawValue
         ball.physicsBody?.contactTestBitMask = NodeCategory.block.rawValue | NodeCategory.paddle.rawValue | NodeCategory.walls.rawValue | NodeCategory.bottom.rawValue
@@ -171,6 +168,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         totalBlocks = 12
         score = 0
         
+        //creates blocks
         for i in 0 ..< numBlocks {
             let block = SKSpriteNode(color: .yellow, size: CGSize(width: 100, height: 100))
             block.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: block.size.width, height: block.size.height))
@@ -206,6 +204,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    /**
+     contact logic
+     */
     func didBegin(_ contact: SKPhysicsContact) {
         print("in did begin")
         if contact.bodyA.categoryBitMask == NodeCategory.block.rawValue || contact.bodyB.categoryBitMask == NodeCategory.block.rawValue {
